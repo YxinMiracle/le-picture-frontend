@@ -1,6 +1,6 @@
 <template>
   <div id="userLoginPage">
-    <h2 class="title">Le云图库 - 用户登录</h2>
+    <h2 class="title">YxinMiacle云图库 - 用户登录</h2>
     <div class="desc">企业级智能协同云图库</div>
     <a-form :model="formState" name="basic" autocomplete="off" @finish="handleSubmit">
       <a-form-item name="userAccount" :rules="[{ required: true, message: '请输入账号' }]">
@@ -10,7 +10,7 @@
         name="userPassword"
         :rules="[
           { required: true, message: '请输入密码' },
-          { min: 8, message: '密码不能小于 8 位' },
+          { min: 8, message: '密码长度不能小于 8 位' },
         ]"
       >
         <a-input-password v-model:value="formState.userPassword" placeholder="请输入密码" />
@@ -26,13 +26,19 @@
   </div>
 </template>
 
-<script>
+<script lang="ts" setup>
+import { reactive } from 'vue'
+import { userLoginUsingPost } from '@/api/userController.ts'
+import { useLoginUserStore } from '@/stores/useLoginUserStore.ts'
+import { message } from 'ant-design-vue'
+import router from '@/router' // 用于接受表单输入的值
+
+// 用于接受表单输入的值
 const formState = reactive<API.UserLoginRequest>({
   userAccount: '',
   userPassword: '',
 })
 
-const router = useRouter()
 const loginUserStore = useLoginUserStore()
 
 /**
@@ -53,7 +59,6 @@ const handleSubmit = async (values: any) => {
     message.error('登录失败，' + res.data.message)
   }
 }
-
 </script>
 
 <style scoped>
@@ -74,10 +79,9 @@ const handleSubmit = async (values: any) => {
 }
 
 .tips {
-  margin-bottom: 16px;
   color: #bbb;
-  font-size: 13px;
   text-align: right;
+  font-size: 13px;
+  margin-bottom: 16px;
 }
-
 </style>

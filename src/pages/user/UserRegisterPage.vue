@@ -41,7 +41,6 @@
   </div>
 </template>
 
-
 <script setup lang="ts">
 import { reactive } from 'vue'
 import { useRouter } from 'vue-router'
@@ -78,11 +77,29 @@ const handleSubmit = async (values: any) => {
     message.error('注册失败，' + res.data.message)
   }
 }
-
-
 </script>
 
-
 <style scoped>
+#userRegisterPage {
+  max-width: 360px;
+  margin: 0 auto;
+}
 
+.title {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.desc {
+  text-align: center;
+  color: #bbb;
+  margin-bottom: 16px;
+}
+
+.tips {
+  color: #bbb;
+  text-align: right;
+  font-size: 13px;
+  margin-bottom: 16px;
+}
 </style>
