@@ -49,6 +49,8 @@ import { MenuProps, message } from 'ant-design-vue'
 import { useRouter } from 'vue-router'
 import { useLoginUserStore } from '@/stores/useLoginUserStore.ts'
 import { userLogoutUsingPost } from '@/api/userController.ts'
+import AddPicturePage from '@/pages/AddPicturePage.vue'
+import PictureManagePage from '@/pages/admin/PictureManagePage.vue'
 
 const loginUserStore = useLoginUserStore()
 
@@ -72,8 +74,18 @@ const originItems = [
     title: '用户管理',
   },
   {
+    key: '/add_picture',
+    label: '创建图片',
+    title: '创建图片',
+  },
+  {
+    key: '/admin/pictureManage',
+    label: '图片管理',
+    title: '图片管理',
+  },
+  {
     key: 'others',
-    label: h('a', { href: 'https://blog.yxinmiracle.cn', target: '_blank' }, '编程导航'),
+    label: h('a', { href: 'https://blog.yxinmiracle.cn', target: '_blank' }, '个人博客'),
     title: '个人博客',
   },
 ]
